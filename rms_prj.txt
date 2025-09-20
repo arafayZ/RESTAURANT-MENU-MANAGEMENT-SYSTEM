@@ -1,0 +1,1245 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp25
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("\n\n\t\t\t\t RESTAURANT MENU MANAGEMENT SYSTEM\n\n");
+            string[] cuisine_name = { "Cuisine Name",
+                                      "Chinese Cuisine",
+                                      "Indonesian Cuisine",
+                                      "Turkish Cuisine",
+                                      "Italian Cuisine",
+                                      "Pakistani Cuisine",
+                                      "Indian Cuisine" };
+
+            string[] chinese_name = { "Chinese Items",
+                                         "Chicken Chowmein       ",
+                                         "Hot n Sour Soup        ",
+                                         "Chicken Corn Soup      ",
+                                         "Chicken Honey Wings    ",
+                                         "Chinese Rice           ",
+                                         "Singaporean Rice       ",
+                                         "Sweet and Sour Chicken ",
+                                         "Sweet and Sour Prawns  ",
+                                         "Chicken with Lime      ",
+                                         "Manchurian             "};
+            double[] chinese_price = { 0, 110, 120, 130, 140, 150, 160, 170, 180, 190, 220 };
+            string[] indonesian_name = { "Indonesian Items",
+                                         "Crispy Air Fryer Tempeh  ",
+                                         "Satay Sweet Potato Curry ",
+                                         "Tofu Sataty Curry        ",
+                                         "Nasi Campur              ",
+                                         "Mei Goreng               ",
+                                         "Kue Nagasari             ",
+                                         "Sayur Asem               ",
+                                         "Ketoprak                 ",
+                                         "Terong Balado            ",
+                                         "Pepes Tahu               " };
+            double[] indonesian_price = { 0, 110, 120, 130, 140, 150, 160, 170, 180, 190, 220 };
+            string[] turkish_name = { "Turkish Cuisine",
+                                         " Manti             ",
+                                         " Kofte             ",
+                                         " Lahmacun          ",
+                                         " Menemen           ",
+                                         " Sis kebap         ",
+                                         " Doner             ",
+                                         " Borek Savory Pie  ",
+                                         " Corba             ",
+                                         " Kuzu              ",
+                                         "Pide              ",
+                                         "Meze              ",
+                                         "Cig Kofte         ",
+                                         "Pilav             ",
+                                         "Yogurtlu          ",
+                                         "Balava            "};
+            double[] turkish_price = { 0, 110, 120, 130, 140, 150, 160, 170, 180, 190, 220, 230, 245, 278, 129, 260 };
+            string[] italian_name = { "Italian Items",
+                                         "Pasta                  ",
+                                         "Pizza                  ",
+                                         "Risotto                ",
+                                         "Polento and Cured Meat ",
+                                         "Gnocchi                ",
+                                         "Lasagne                ",
+                                         "Tortelli and Ravioli   ",
+                                         "Focaccia               ",
+                                         "Gelato Ice Cream       "};
+            double[] italian_price = { 0, 110, 120, 130, 140, 150, 160, 170, 180, 190 };
+            string[] pakistani_name = { "Pakistani Cuisine",
+                                           " Beef Nihari         ",
+                                           " Mutton Nihari       ",
+                                           " Kabuli Pulao        ",
+                                           " Chicken Karahi      ",
+                                           " Mutton Karahi       ",
+                                           " Beef Karahi         ",
+                                           " Chicken Korma       ",
+                                           " Mutton Korma        ",
+                                           " Beef Korma          ",
+                                           "Chicken Tikka Kebab ",
+                                           "Chicken Biryani     ",
+                                           "Mutton Biryani      ",
+                                           "Beef Biryani        ",
+                                           "Sajji               ",
+                                           "Gajar Halva         ",
+                                           "Doodh Dulari        "};
+            double[] pakistani_price = { 0, 110, 120, 130, 140, 150, 160, 170, 180, 190, 220, 230, 245, 278, 129, 145, 189 };
+            string[] indian_name = { "Indian Cuisine",
+                                        "Khichdi                ",
+                                        "Matar Kulcha           ",
+                                        "Khandvi and Curry Rice ",
+                                        "Thepla                 ",
+                                        "Momos                  ",
+                                        "Vada Pav               ",
+                                        "Chole Bhature          ",
+                                        "Dosa                   ",
+                                        "Pav Bhaji              ",
+                                        "Dal Dhokli             "};
+            double[] indian_price = { 0, 110, 120, 130, 140, 150, 160, 170, 180, 190, 220 };
+
+            // arrays to hold food items names and food items prices
+            int size = 100;
+
+            string[] food_name_one = new string[size];   //CHINESE
+            double[] food_price_one = new double[size]; //CUISINE
+
+            string[] food_name_two = new string[size];  //INDONESIAN
+            double[] food_price_two = new double[size];  //CUISINE
+
+            string[] food_name_three = new string[size];  //TURKISH
+            double[] food_price_three = new double[size];  //CUISINE
+
+            string[] food_name_four = new string[size];  //ITALIAN
+            double[] food_price_four = new double[size];  //CUISINE
+
+            string[] food_name_five = new string[size];  //PAKISTANI
+            double[] food_price_five = new double[size]; //CUISINE
+
+            string[] food_name_six = new string[size];  //INDIAN
+            double[] food_price_six = new double[size];  //CUISINE
+
+            int selecting = 0;//in function called as select_item
+
+            double bill = 0;
+            int num = 0;              //num variable would hold the value each cuisine has food items use in displayMenu()
+            double bill_add = 0;     // bill_add variable would be use as an accumulator
+            double bill_remove = 0;  // bill_remove variable would be use as an accumulator
+            double sum_chinese = 0;
+            double sum_indonesian = 0;
+            double sum_turkish = 0;
+            double sum_italian = 0;
+            double sum_pakistani = 0;
+            double sum_indian = 0;
+            double sum_chinese_remove = 0;
+            double sum_indonesian_remove = 0;
+            double sum_turkish_remove = 0;
+            double sum_italian_remove = 0;
+            double sum_pakistani_remove = 0;
+            double sum_indian_remove = 0;
+            double check_chinese = 0;
+            double check_indonesian = 0;
+            double check_turkish = 0;
+            double check_italian = 0;
+            double check_pakistani = 0;
+            double check_indian = 0;
+            string option;
+            string select = "start";//for initialization
+            string cuisine;
+            Console.WriteLine(" Please select any one from the Options\n");
+
+            while (select != "done")     // "done" string would be used as a sentinel
+            {
+                Console.WriteLine("\t\tOptions\n");
+                Console.WriteLine(" 1. Cuisine List");
+                Console.WriteLine(" 2. Add Items to the order");
+                Console.WriteLine(" 3. Remove Items from your placed order");
+                Console.WriteLine(" 4. Generate Bill");
+                Console.WriteLine(" 5. Exit");
+                Console.WriteLine("\n");
+                Console.Write(" Choosing Options = ");
+                option = Console.ReadLine();
+                switch (option)
+                   
+                {
+                    case "1":
+                        Console.WriteLine("\t \n List Of Cuisine\n");
+                        for (int i = 1; i < 7; i++)
+                        {
+                            Console.WriteLine(" " + i + ") " + cuisine_name[i]);
+                        }
+                        Console.WriteLine();
+                        break;
+
+                    case "2":
+                        Console.WriteLine("\t\t\t\t Select Your Desire Cuisine");
+                        cuisine = Console.ReadLine();
+
+                        //nested switch case 2
+                        switch (cuisine)
+                        {
+                            case "1":
+                                num = 11;
+                                Console.WriteLine(" " + chinese_name[0] + " Menu");
+                                Console.WriteLine();
+                                displayMenu(chinese_price, chinese_name, num);
+                                Console.WriteLine(" \nAdd Items you want to order!\n");
+                                Console.WriteLine(" Please type done when you finish ordering!\n");
+                                //additem oder is a function which call here
+                                addItemOrder(chinese_price, chinese_name, ref sum_chinese, ref selecting, ref food_price_one, ref food_name_one, cuisine_name[1]);
+
+                                bill_add += sum_chinese;//sum come from function and add in bill add
+                                check_chinese = sum_chinese;//check is used for remove item it ensure to remove item acc to cuisine
+                                sum_chinese = 0;//it used b/c when another item order after bill generation it dont count above generated values
+                                break;
+
+                            case "2":
+                                num = 11;
+                                Console.WriteLine(" " + indonesian_name[0] + " Menu");
+                                Console.WriteLine();
+                                displayMenu(indonesian_price, indonesian_name, num);
+                                Console.WriteLine(" \nAdd Items you want to order!\n");
+                                Console.WriteLine(" Please type done when you finish ordering!\n");
+
+                                addItemOrder(indonesian_price, indonesian_name, ref sum_indonesian, ref selecting, ref food_price_two, ref food_name_two, cuisine_name[2]);
+
+                                bill_add += sum_indonesian;
+                                check_indonesian = sum_indonesian;
+                                sum_indonesian = 0;
+                                break;
+
+                            case "3":
+                                num = 16;
+                                Console.WriteLine(" " + turkish_name[0] + " Menu");
+                                Console.WriteLine();
+                                displayMenu(turkish_price, turkish_name, num);
+                                Console.WriteLine(" \nAdd Items you want to order!\n");
+                                Console.WriteLine(" Please type done when you finish ordering!\n");
+
+                                addItemOrder(turkish_price, turkish_name, ref sum_turkish, ref selecting, ref food_price_three, ref food_name_three, cuisine_name[3]);
+
+                                bill_add += sum_turkish;
+                                check_turkish = sum_turkish;
+                                sum_turkish = 0;
+                                break;
+
+                            case "4":
+                                num = 10;
+                                Console.WriteLine(" " + italian_name[0] + " Menu");
+                                Console.WriteLine();
+                                displayMenu(italian_price, italian_name, num);
+                                Console.WriteLine(" \nAdd Items you want to order!\n");
+                                Console.WriteLine(" Please type done when you finish ordering!\n");
+
+                                addItemOrder(italian_price, italian_name, ref sum_italian, ref selecting, ref food_price_four, ref food_name_four, cuisine_name[4]);
+
+                                bill_add += sum_italian;
+                                check_italian = sum_italian;
+                                sum_italian = 0;
+                                break;
+
+                            case "5":
+                                num = 17;
+                                Console.WriteLine(" " + pakistani_name[0] + " Menu");
+                                Console.WriteLine();
+                                displayMenu(pakistani_price, pakistani_name, num);
+                                Console.WriteLine(" \nAdd Items you want to order!\n");
+                                Console.WriteLine(" Please type done when you finish ordering!\n");
+
+                                addItemOrder(pakistani_price, pakistani_name, ref sum_pakistani, ref selecting, ref food_price_five, ref food_name_five, cuisine_name[5]);
+
+                                bill_add += sum_pakistani;
+                                check_pakistani = sum_pakistani;
+                                sum_pakistani = 0;
+                                break;
+
+                            case "6":
+                                num = 10;
+                                Console.WriteLine(" " + indian_name[0] + " Menu");
+                                Console.WriteLine();
+                                displayMenu(indian_price, indian_name, num);
+                                Console.WriteLine(" \nAdd Items you want to order!\n");
+                                Console.WriteLine(" Please type done when you finish ordering!\n");
+
+                                addItemOrder(indian_price, indian_name, ref sum_indian, ref selecting, ref food_price_six, ref food_name_six, cuisine_name[6]);
+
+                                bill_add += sum_indian;
+                                check_indian = sum_indian;
+                                sum_indian = 0;
+                                break;
+
+                            default:
+                                Console.WriteLine(" Invalid choice of cuisine!");
+                                break;
+                        }
+                        break;//inner 2nd case switch ended
+
+
+                    //outer switch started again
+
+                    case "3"://remove case
+                        if (bill_add != 0)
+                        {
+                            Console.WriteLine(" Enter the cuisine code from which menu you want to remove items from the order you placed\n");
+                            cuisine = Console.ReadLine();
+                            switch (cuisine)
+                            {
+                                case "1":
+                                    if (check_chinese != 0)//it ensure that item are remove only by selected cuisine
+                                    {
+                                        Console.WriteLine(" \nChinese Cuisine");
+                                        Console.WriteLine(" \nRemove Items from your order!\n");
+                                        Console.WriteLine(" Please type done when you finish removing items from order!\n");
+
+                                        removeItemOrder(chinese_price, chinese_name, ref sum_chinese_remove, selecting, ref food_price_one, ref food_name_one, cuisine_name[1]);
+
+                                        bill_remove += sum_chinese_remove;//it store remove value in bill_remove (sum value call in function name removeitemorder)
+                                        sum_chinese_remove = 0;//help to generate another bill from scratch
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine(" Sorry but you did not order any food item from this cuisine.");
+                                    }
+                                    break;
+                                case "2":
+                                    if (check_indonesian != 0)
+                                    {
+                                        Console.WriteLine(" \nIndonesian Cuisine");
+                                        Console.WriteLine(" \nRemove Items from your order!\n");
+                                        Console.WriteLine(" Please type done when you finish removing items from order!\n");
+                                        removeItemOrder(indonesian_price, indonesian_name, ref sum_indonesian_remove, selecting, ref food_price_two, ref food_name_two, cuisine_name[2]);
+                                        bill_remove += sum_indonesian_remove;
+                                        sum_indonesian_remove = 0;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine(" Sorry but you did not order any food item from this cuisine.");
+                                    }
+                                    break;
+                                case "3":
+                                    if (check_turkish != 0)
+                                    {
+                                        Console.WriteLine(" \nTurkish Cuisine");
+                                        Console.WriteLine(" \nRemove Items from your order!\n");
+                                        Console.WriteLine(" Please type done when you finish removing items from order!\n");
+                                        removeItemOrder(turkish_price, turkish_name, ref sum_turkish_remove, selecting, ref food_price_three, ref food_name_three, cuisine_name[3]);
+                                        bill_remove += sum_turkish_remove;
+                                        sum_turkish_remove = 0;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine(" Sorry but you did not order any food item from this cuisine.");
+                                    }
+                                    break;
+                                case "4":
+                                    if (check_italian != 0)
+                                    {
+                                        Console.WriteLine(" \nItalian Cuisine");
+                                        Console.WriteLine(" \nRemove Items from your order!\n");
+                                        Console.WriteLine(" Please type done when you finish removing items from order!\n");
+                                        removeItemOrder(italian_price, italian_name, ref sum_italian_remove, selecting, ref food_price_four, ref food_name_four, cuisine_name[4]);
+                                        bill_remove += sum_italian_remove;
+                                        sum_italian_remove = 0;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine(" Sorry but you did not order any food item from this cuisine.");
+                                    }
+                                    break;
+                                case "5":
+                                    if (check_pakistani != 0)
+                                    {
+                                        Console.WriteLine(" \nPakistani Cuisine");
+                                        Console.WriteLine(" \nRemove Items from your order!\n");
+                                        Console.WriteLine(" Please type done when you finish removing items from order!\n");
+                                        removeItemOrder(pakistani_price, pakistani_name, ref sum_pakistani_remove, selecting, ref food_price_five, ref food_name_five, cuisine_name[5]);
+                                        bill_remove += sum_pakistani_remove;
+                                        sum_pakistani_remove = 0;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine(" Sorry but you did not order any food item from this cuisine.");
+                                    }
+                                    break;
+                                case "6":
+                                    if (check_indian != 0)
+                                    {
+                                        Console.WriteLine(" \nIndian Cuisine");
+                                        Console.WriteLine(" \nRemove Items from your order!\n");
+                                        Console.WriteLine(" Please type done when you finish removing items from order!\n");
+                                        removeItemOrder(indian_price, indian_name, ref sum_indian_remove, selecting, ref food_price_six, ref food_name_six, cuisine_name[6]);
+                                        bill_remove += sum_indian_remove;
+                                        sum_indian_remove = 0;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine(" Sorry but you did not order any food item from this cuisine.");
+                                    }
+                                    break;
+                                default:
+                                    Console.WriteLine(" Invalid choice of cuisine!");
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine(" Sorry but you cannot remove any food item because you did not order any food item.");
+                        }
+
+                        break;
+
+                    case "4"://generate bill case
+                        Console.WriteLine(" You Order Food Items of total amount = " + bill_add);
+                        Console.WriteLine(" After removing food items from your order the total remove amount = " + bill_remove);
+                        bill = bill_add - bill_remove;
+                        if (bill == 0)
+                        {
+                            Console.WriteLine("\n Please order something first then ask for the bill!\n");
+                            Console.WriteLine(" Please place your order again.");
+                            //below values help to generate another bill from scratch
+                            bill = 0;
+                            bill_add = 0;
+                            bill_remove = 0;
+                            check_chinese = 0;
+                            check_indonesian = 0;
+                            check_turkish = 0;
+                            check_italian = 0;
+                            check_pakistani = 0;
+                            check_indian = 0;
+
+                        }
+                        //else if (bill < 0)
+                        //{
+                        //    Console.WriteLine("\n Sorry the bill cannot be generate because you removed the food items which you did not order!\n");
+                        //    Console.WriteLine(" Please place your order again.");
+                        //    bill = 0;
+                        //    bill_add = 0;
+                        //    bill_remove = 0;
+                        //    check_chinese = 0;
+                        //    check_indonesian = 0;
+                        //    check_turkish = 0;
+                        //    check_italian = 0;
+                        //    check_pakistani = 0;
+                        //    check_indian = 0;
+                        //}
+                        else
+                        {
+                            double gst = bill * 0.1;
+                            Console.WriteLine("GST Amount = " + gst + "/-");
+                            bill += gst;
+                            Console.WriteLine(" Your Bill after including GST");
+                            Console.WriteLine("                  --------------");
+                            Console.WriteLine(" The total bill = | Rs. " + bill + "/- | ");
+                            Console.WriteLine("                  --------------");
+                            bill = 0;
+                            bill_add = 0;
+                            bill_remove = 0;
+                            check_chinese = 0;
+                            check_indonesian = 0;
+                            check_turkish = 0;
+                            check_italian = 0;
+                            check_pakistani = 0;
+                            check_indian = 0;
+                        }
+                        break;
+
+                    case "5"://exit case
+                        Console.WriteLine("\n  Exit!");
+                        break;
+
+                    default:
+                        Console.WriteLine(" Invalid option entered!");
+                        break;
+                }
+
+                if (option == "5")
+                {
+                    break;
+                }
+
+                Console.WriteLine("-------------------------------------------------------------------------------------------");
+
+            }
+            Console.ReadKey();
+        }
+
+
+
+        //---------------------------------------------------------------Additem order--------------------------------------------------------------------------
+
+
+
+        //Module for add items to order
+        public static double addItemOrder(double[] item_price_arr, string[] item_name_arr, ref double sum, ref int select_item, ref double[] food_price, ref string[] food_name, string cuisine_menu)
+        {
+            //sum variable is pass by reference because the value of sum would be use in the program later on
+            double i = 0;                  // using i variable as an accumulator
+            int j = 0;
+            select_item = 0;
+            string item_order = "eat";
+            while (item_order != "done")   // "done" string would be used as a sentinel
+            {
+                item_order = Console.ReadLine();
+                if (item_order == "1")
+                {
+                    Console.WriteLine("Your Order " + item_name_arr[1]);
+                    i = item_price_arr[1];//i store value
+                    select_item = select_item + 1;//item index increment start from 0 as declare in main 
+                    food_price[j] = item_price_arr[1];
+                    food_name[j] = item_name_arr[1];
+                }
+                else if (item_order == "2")
+                {
+                    Console.WriteLine("Your Order " + item_name_arr[2]);
+                    i = item_price_arr[2];
+                    select_item = select_item + 1;
+                    food_price[j] = item_price_arr[2];
+                    food_name[j] = item_name_arr[2];
+
+                }
+                else if (item_order == "3")
+                {
+                    Console.WriteLine("Your Order " + item_name_arr[3]);
+                    i = item_price_arr[3];
+                    select_item = select_item + 1;
+                    food_price[j] = item_price_arr[3];
+                    food_name[j] = item_name_arr[3];
+
+                }
+                else if (item_order == "4")
+                {
+                    Console.WriteLine("Your Order " + item_name_arr[4]);
+                    i = item_price_arr[4];
+                    select_item = select_item + 1;
+                    food_price[j] = item_price_arr[4];
+                    food_name[j] = item_name_arr[4];
+
+                }
+                else if (item_order == "5")
+                {
+                    Console.WriteLine("Your Order " + item_name_arr[5]);
+                    i = item_price_arr[5];
+                    select_item = select_item + 1;
+                    food_price[j] = item_price_arr[5];
+                    food_name[j] = item_name_arr[5];
+
+                }
+                else if (item_order == "6")
+                {
+                    Console.WriteLine("Your Order " + item_name_arr[6]);
+                    i = item_price_arr[6];
+                    select_item = select_item + 1;
+                    food_price[j] = item_price_arr[6];
+                    food_name[j] = item_name_arr[6];
+
+                }
+                else if (item_order == "7")
+                {
+                    Console.WriteLine("Your Order " + item_name_arr[7]);
+                    i = item_price_arr[7];
+                    select_item = select_item + 1;
+                    food_price[j] = item_price_arr[7];
+                    food_name[j] = item_name_arr[7];
+
+                }
+                else if (item_order == "8")
+                {
+                    Console.WriteLine("Your Order " + item_name_arr[8]);
+                    i = item_price_arr[8];
+                    select_item = select_item + 1;
+                    food_price[j] = item_price_arr[8];
+                    food_name[j] = item_name_arr[8];
+
+                }
+                else if (item_order == "9")
+                {
+                    Console.WriteLine("Your Order " + item_name_arr[9]);
+                    i = item_price_arr[9];
+                    select_item = select_item + 1;
+                    food_price[j] = item_price_arr[9];
+                    food_name[j] = item_name_arr[9];
+
+                }
+                else if (item_order == "10")
+                {
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your Order " + item_name_arr[10]);
+                        i = item_price_arr[10];
+                        select_item = select_item + 1;
+                        food_price[j] = item_price_arr[10];
+                        food_name[j] = item_name_arr[10];
+                    }
+
+                }
+                else if (item_order == "11")
+                {
+
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine") ||
+                        (cuisine_menu == "Chinese Cuisine") || (cuisine_menu == "Indonesian Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your Order " + item_name_arr[11]);
+                        i = item_price_arr[11];
+                        select_item = select_item + 1;
+                        food_price[j] = item_price_arr[11];
+                        food_name[j] = item_name_arr[11];
+                    }
+
+                }
+                else if (item_order == "12")
+                {
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine") ||
+                        (cuisine_menu == "Chinese Cuisine") || (cuisine_menu == "Indonesian Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your Order " + item_name_arr[12]);
+                        i = item_price_arr[12];
+                        select_item = select_item + 1;
+                        food_price[j] = item_price_arr[12];
+                        food_name[j] = item_name_arr[12];
+                    }
+
+                }
+                else if (item_order == "13")
+                {
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine") ||
+                        (cuisine_menu == "Chinese Cuisine") || (cuisine_menu == "Indonesian Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your Order " + item_name_arr[13]);
+                        i = item_price_arr[13];
+                        select_item = select_item + 1;
+                        food_price[j] = item_price_arr[13];
+                        food_name[j] = item_name_arr[13];
+                    }
+
+                }
+                else if (item_order == "14")
+                {
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine") ||
+                        (cuisine_menu == "Chinese Cuisine") || (cuisine_menu == "Indonesian Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your Order " + item_name_arr[14]);
+                        i = item_price_arr[14];
+                        select_item = select_item + 1;
+                        food_price[j] = item_price_arr[14];
+                        food_name[j] = item_name_arr[14];
+                    }
+
+                }
+                else if (item_order == "15")
+                {
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine") ||
+                        (cuisine_menu == "Chinese Cuisine") || (cuisine_menu == "Indonesian Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your Order " + item_name_arr[15]);
+                        i = item_price_arr[15];
+                        select_item = select_item + 1;
+                        food_price[j] = item_price_arr[15];
+                        food_name[j] = item_name_arr[15];
+                    }
+
+                }
+                else if (item_order == "16")
+                {
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine") ||
+                        (cuisine_menu == "Chinese Cuisine") || (cuisine_menu == "Indonesian Cuisine") ||
+                        (cuisine_menu == "Turkish Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your Order " + item_name_arr[16]);
+                        i = item_price_arr[16];
+                        select_item = select_item + 1;
+                        food_price[j] = item_price_arr[16];
+                        food_name[j] = item_name_arr[16];
+                    }
+                }
+                else if (item_order == "done")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Sorry the order you are trying to order cannot be ordered because of some issues.");
+                    i = 0;
+                }
+                if (i != 0)
+                {
+                    j++;//represent size
+                }
+                sum += i;//this is the value which we call  while creating bill e.g sum_pakistani,indion etc
+            }
+            return sum;
+        }
+
+
+
+        //--------------------------------------------------------------removeitemorder------------------------------------------------------------------------
+
+
+
+        //Module for remove item from oder
+        public static double removeItemOrder(double[] item_price_arr, string[] item_name_arr, ref double sum, int select_item, ref double[] food_price, ref string[] food_name, string cuisine_menu)
+        {
+            //sum variable is pass by reference because the value of sum would be use in the program later on
+            double i = 0;                    //using i varible as an accumulator
+            string remove_order = "too much eat";//initialize 
+            while (remove_order != "done")   // "done" string would be used as a sentinel
+            {
+                remove_order = Console.ReadLine();
+                if (remove_order == "1")
+                {
+                    string n = "NOT OK";
+                    for (int k = 1; k < 2; k++)
+                    {
+                        for (int l = 0; l < select_item; l++)
+                        {
+                            if (item_name_arr[k] == food_name[l])
+                            {
+                                food_name[l] = "";
+                                food_price[l] = 0;
+                                n = "OK";
+                                break;
+                            }
+                        }
+                    }
+                    if (n == "OK")
+                    {
+                        Console.WriteLine(" You removed " + item_name_arr[1]);
+                        i = item_price_arr[1];//store value in i
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Sorry but you did not order this food item.");
+                        i = 0;
+                    }
+                }
+                else if (remove_order == "2")
+                {
+                    string n = "NOT OK";
+                    for (int k = 2; k < 3; k++)
+                    {
+                        for (int l = 0; l < select_item; l++)
+                        {
+                            if (item_name_arr[k] == food_name[l])
+                            {
+                                //food_name[l] = null;
+                                food_name[l] = "";
+                                food_price[l] = 0;
+                                n = "OK";
+                                break;
+                            }
+                        }
+                    }
+                    if (n == "OK")
+                    {
+                        Console.WriteLine(" You removed " + item_name_arr[2]);
+                        i = item_price_arr[2];
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Sorry but you did not order this food item.");
+                        i = 0;
+                    }
+                }
+                else if (remove_order == "3")
+                {
+                    string n = "NOT OK";
+                    for (int k = 3; k < 4; k++)
+                    {
+                        for (int l = 0; l < select_item; l++)
+                        {
+                            if (item_name_arr[k] == food_name[l])
+                            {
+                                food_name[l] = "";
+                                food_price[l] = 0;
+                                n = "OK";
+                                break;
+                            }
+                        }
+                    }
+                    if (n == "OK")
+                    {
+                        Console.WriteLine(" You removed " + item_name_arr[3]);
+                        i = item_price_arr[3];
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Sorry but you did not order this food item.");
+                        i = 0;
+                    }
+                }
+                else if (remove_order == "4")
+                {
+                    string n = "NOT OK";
+                    for (int k = 4; k < 5; k++)
+                    {
+                        for (int l = 0; l < select_item; l++)
+                        {
+                            if (item_name_arr[k] == food_name[l])
+                            {
+                                food_name[l] = "";
+                                food_price[l] = 0;
+                                n = "OK";
+                                break;
+                            }
+                        }
+                    }
+                    if (n == "OK")
+                    {
+                        Console.WriteLine(" You removed " + item_name_arr[4]);
+                        i = item_price_arr[4];
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Sorry but you did not order this food item.");
+                        i = 0;
+                    }
+                }
+                else if (remove_order == "5")
+                {
+                    string n = "NOT OK";
+                    for (int k = 5; k < 6; k++)
+                    {
+                        for (int l = 0; l < select_item; l++)
+                        {
+                            if (item_name_arr[k] == food_name[l])
+                            {
+                                food_name[l] = "";
+                                food_price[l] = 0;
+                                n = "OK";
+                                break;
+                            }
+                        }
+                    }
+                    if (n == "OK")
+                    {
+                        Console.WriteLine(" You removed " + item_name_arr[5]);
+                        i = item_price_arr[5];
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Sorry but you did not order this food item.");
+                        i = 0;
+                    }
+                }
+                else if (remove_order == "6")
+                {
+                    string n = "NOT OK";
+                    for (int k = 6; k < 7; k++)
+                    {
+                        for (int l = 0; l < select_item; l++)
+                        {
+                            if (item_name_arr[k] == food_name[l])
+                            {
+                                food_name[l] = "";
+                                food_price[l] = 0;
+                                n = "OK";
+                                break;
+                            }
+                        }
+                    }
+                    if (n == "OK")
+                    {
+                        Console.WriteLine(" You removed " + item_name_arr[6]);
+                        i = item_price_arr[6];
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Sorry but you did not order this food item.");
+                        i = 0;
+                    }
+                }
+                else if (remove_order == "7")
+                {
+                    string n = "NOT OK";
+                    for (int k = 7; k < 8; k++)
+                    {
+                        for (int l = 0; l < select_item; l++)
+                        {
+                            if (item_name_arr[k] == food_name[l])
+                            {
+                                food_name[l] = "";
+                                food_price[l] = 0;
+                                n = "OK";
+                                break;
+                            }
+                        }
+                    }
+                    if (n == "OK")
+                    {
+                        Console.WriteLine(" You removed " + item_name_arr[7]);
+                        i = item_price_arr[7];
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Sorry but you did not order this food item.");
+                        i = 0;
+                    }
+                }
+                else if (remove_order == "8")
+                {
+                    string n = "NOT OK";
+                    for (int k = 8; k < 9; k++)
+                    {
+                        for (int l = 0; l < select_item; l++)
+                        {
+                            if (item_name_arr[k] == food_name[l])
+                            {
+                                food_name[l] = "";
+                                food_price[l] = 0;
+                                n = "OK";
+                                break;
+                            }
+                        }
+                    }
+                    if (n == "OK")
+                    {
+                        Console.WriteLine(" You removed " + item_name_arr[8]);
+                        i = item_price_arr[8];
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Sorry but you did not order this food item.");
+                        i = 0;
+                    }
+                }
+                else if (remove_order == "9")
+                {
+                    string n = "NOT OK";
+                    for (int k = 9; k < 10; k++)
+                    {
+                        for (int l = 0; l < select_item; l++)
+                        {
+                            if (item_name_arr[k] == food_name[l])
+                            {
+                                food_name[l] = "";
+                                food_price[l] = 0;
+                                n = "OK";
+                                break;
+                            }
+                        }
+                    }
+                    if (n == "OK")
+                    {
+                        Console.WriteLine(" You removed " + item_name_arr[9]);
+                        i = item_price_arr[9];
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Sorry but you did not order this food item.");
+                        i = 0;
+                    }
+                }
+                else if (remove_order == "10")
+                {
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        string n = "NOT OK";
+                        for (int k = 10; k < 11; k++)
+                        {
+                            for (int l = 0; l < select_item; l++)
+                            {
+                                if (item_name_arr[k] == food_name[l])
+                                {
+                                    food_name[l] = "";
+                                    food_price[l] = 0;
+                                    n = "OK";
+                                    break;
+                                }
+                            }
+                        }
+                        if (n == "OK")
+                        {
+                            Console.WriteLine(" You removed " + item_name_arr[10]);
+                            i = item_price_arr[10];
+                        }
+                        else
+                        {
+                            Console.WriteLine(" Sorry but you did not order this food item.");
+                            i = 0;
+                        }
+                    }
+                }
+                else if (remove_order == "11")
+                {
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine") ||
+                        (cuisine_menu == "Chinese Cuisine") || (cuisine_menu == "Indonesian Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        string n = "NOT OK";
+                        for (int k = 11; k < 12; k++)
+                        {
+                            for (int l = 0; l < select_item; l++)
+                            {
+                                if (item_name_arr[k] == food_name[l])
+                                {
+                                    food_name[l] = "";
+                                    food_price[l] = 0;
+                                    n = "OK";
+                                    break;
+                                }
+                            }
+                        }
+                        if (n == "OK")
+                        {
+                            Console.WriteLine(" You removed " + item_name_arr[11]);
+                            i = item_price_arr[11];
+                        }
+                        else
+                        {
+                            Console.WriteLine(" Sorry but you did not order this food item.");
+                            i = 0;
+                        }
+                    }
+                }
+                else if (remove_order == "12")
+                {
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine") ||
+                        (cuisine_menu == "Chinese Cuisine") || (cuisine_menu == "Indonesian Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        string n = "NOT OK";
+                        for (int k = 12; k < 13; k++)
+                        {
+                            for (int l = 0; l < select_item; l++)
+                            {
+                                if (item_name_arr[k] == food_name[l])
+                                {
+                                    food_name[l] = "";
+                                    food_price[l] = 0;
+                                    n = "OK";
+                                    break;
+                                }
+                            }
+                        }
+                        if (n == "OK")
+                        {
+                            Console.WriteLine(" You removed " + item_name_arr[12]);
+                            i = item_price_arr[12];
+                        }
+                        else
+                        {
+                            Console.WriteLine(" Sorry but you did not order this food item.");
+                            i = 0;
+                        }
+                    }
+                }
+                else if (remove_order == "13")
+                {
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine") ||
+                        (cuisine_menu == "Chinese Cuisine") || (cuisine_menu == "Indonesian Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        string n = "NOT OK";
+                        for (int k = 13; k < 14; k++)
+                        {
+                            for (int l = 0; l < select_item; l++)
+                            {
+                                if (item_name_arr[k] == food_name[l])
+                                {
+                                    food_name[l] = "";
+                                    food_price[l] = 0;
+                                    n = "OK";
+                                    break;
+                                }
+                            }
+                        }
+                        if (n == "OK")
+                        {
+                            Console.WriteLine(" You removed " + item_name_arr[13]);
+                            i = item_price_arr[13];
+                        }
+                        else
+                        {
+                            Console.WriteLine(" Sorry but you did not order this food item.");
+                            i = 0;
+                        }
+                    }
+                }
+                else if (remove_order == "14")
+                {
+
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine") ||
+                        (cuisine_menu == "Chinese Cuisine") || (cuisine_menu == "Indonesian Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        string n = "NOT OK";
+                        for (int k = 14; k < 15; k++)
+                        {
+                            for (int l = 0; l < select_item; l++)
+                            {
+                                if (item_name_arr[k] == food_name[l])
+                                {
+                                    food_name[l] = "";
+                                    food_price[l] = 0;
+                                    n = "OK";
+                                    break;
+                                }
+                            }
+                        }
+                        if (n == "OK")
+                        {
+                            Console.WriteLine(" You removed " + item_name_arr[14]);
+                            i = item_price_arr[14];
+                        }
+                        else
+                        {
+                            Console.WriteLine(" Sorry but you did not order this food item.");
+                            i = 0;
+                        }
+                    }
+                }
+                else if (remove_order == "15")
+                {
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine") ||
+                        (cuisine_menu == "Chinese Cuisine") || (cuisine_menu == "Indonesian Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        string n = "NOT OK";
+                        for (int k = 15; k < 16; k++)
+                        {
+                            for (int l = 0; l < select_item; l++)
+                            {
+                                if (item_name_arr[k] == food_name[l])
+                                {
+                                    food_name[l] = "";
+                                    food_price[l] = 0;
+                                    n = "OK";
+                                    break;
+                                }
+                            }
+                        }
+                        if (n == "OK")
+                        {
+                            Console.WriteLine(" You removed " + item_name_arr[15]);
+                            i = item_price_arr[15];
+                        }
+                        else
+                        {
+                            Console.WriteLine(" Sorry but you did not order this food item.");
+                            i = 0;
+                        }
+                    }
+                }
+                else if (remove_order == "16")
+                {
+                    if ((cuisine_menu == "Italian Cuisine") || (cuisine_menu == "Indian Cuisine") ||
+                        (cuisine_menu == "Chinese Cuisine") || (cuisine_menu == "Indonesian Cuisine") ||
+                        (cuisine_menu == "Turkish Cuisine"))
+                    {
+                        Console.WriteLine(" Sorry but there is no such food item by this code in this cuisine.");
+                        i = 0;
+                    }
+                    else
+                    {
+                        string n = "NOT OK";
+                        for (int k = 16; k < 17; k++)
+                        {
+                            for (int l = 0; l < select_item; l++)
+                            {
+                                if (item_name_arr[k] == food_name[l])
+                                {
+                                    food_name[l] = "";
+                                    food_price[l] = 0;
+                                    n = "OK";
+                                    break;
+                                }
+                            }
+                        }
+                        if (n == "OK")
+                        {
+                            Console.WriteLine(" You removed " + item_name_arr[16]);
+                            i = item_price_arr[16];
+                        }
+                        else
+                        {
+                            Console.WriteLine(" Sorry but you did not order this food item.");
+                            i = 0;
+                        }
+                    }
+                }
+                else if (remove_order == "done")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Sorry but you already cancelled your whole order.");
+                    i = 0;
+                }
+                sum += i;//sum represent addition of all reoving items and called in main as sum pakistani remove etc
+            }
+            return sum;
+        }
+        //Module to Display the menu
+        public static void displayMenu(double[] item_price_arr, string[] item_name_arr, int end)
+        {
+            for (int i = 1; i < end; i++)
+            {
+                Console.WriteLine(" " + i + ". " + item_name_arr[i] + " ------------------------------ Rs. " + item_price_arr[i] + "/-");
+            }
+        }
+    }
+}
